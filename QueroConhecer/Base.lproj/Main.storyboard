@@ -89,11 +89,8 @@ por 2 segundos</string>
                                         <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUy-mq-AfW">
-                                        <rect key="frame" x="284" y="81" width="80" height="28.5"/>
+                                        <rect key="frame" x="291" y="81" width="73" height="28.5"/>
                                         <color key="backgroundColor" name="Main"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="Tz3-8o-2Mk"/>
-                                        </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Escolher">
@@ -120,8 +117,8 @@ por 2 segundos</string>
                                             <constraint firstItem="Sxm-qk-v6M" firstAttribute="centerY" secondItem="CTL-Yh-c7T" secondAttribute="centerY" id="kOc-8z-OUn"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUo-iZ-J7b">
-                                        <rect key="frame" x="10" y="81" width="264" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUo-iZ-J7b">
+                                        <rect key="frame" x="10" y="81" width="271" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -167,6 +164,7 @@ por 2 segundos</string>
                             <constraint firstItem="edX-g9-20b" firstAttribute="bottom" secondItem="7RE-2Q-7Ah" secondAttribute="bottom" constant="40" id="eeZ-XN-5ed"/>
                             <constraint firstItem="edX-g9-20b" firstAttribute="trailing" secondItem="7RE-2Q-7Ah" secondAttribute="trailing" constant="20" id="h1e-RP-oDN"/>
                             <constraint firstItem="dva-ao-tpu" firstAttribute="trailing" secondItem="7RE-2Q-7Ah" secondAttribute="trailing" constant="15" id="ilm-VW-e4c"/>
+                            <constraint firstItem="dva-ao-tpu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="edX-g9-20b" secondAttribute="leading" symbolic="YES" id="vXd-hA-dcu"/>
                         </constraints>
                     </view>
                     <connections>
