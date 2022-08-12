@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		682C232428A69B450027B3AC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C232328A69B450027B3AC /* MapViewController.swift */; };
+		682C232628A6A8370027B3AC /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682C232528A6A8370027B3AC /* Place.swift */; };
 		686F6E402868E30B00972970 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686F6E3F2868E30B00972970 /* AppDelegate.swift */; };
 		686F6E422868E30B00972970 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686F6E412868E30B00972970 /* SceneDelegate.swift */; };
 		686F6E442868E30B00972970 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686F6E432868E30B00972970 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		682C232328A69B450027B3AC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		682C232528A6A8370027B3AC /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		686F6E3C2868E30B00972970 /* QueroConhecer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QueroConhecer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		686F6E3F2868E30B00972970 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		686F6E412868E30B00972970 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				6884BCBC28A03EA700BA900E /* PlacesTableViewController.swift */,
 				6884BCC228A0A11C00BA900E /* PlaceFinderViewController.swift */,
 				682C232328A69B450027B3AC /* MapViewController.swift */,
+				682C232528A6A8370027B3AC /* Place.swift */,
 			);
 			path = QueroConhecer;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				6884BCBD28A03EA800BA900E /* PlacesTableViewController.swift in Sources */,
 				686F6E402868E30B00972970 /* AppDelegate.swift in Sources */,
 				6884BCC328A0A11D00BA900E /* PlaceFinderViewController.swift in Sources */,
+				682C232628A6A8370027B3AC /* Place.swift in Sources */,
 				686F6E422868E30B00972970 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
