@@ -8,11 +8,11 @@
 import Foundation
 import MapKit
 
-struct Place {
+struct Place: Codable {
     let name: String
     let latitude: CLLocationDegrees
     let longitude: CLLocationDegrees
-    let addreess: String
+    let address: String
     
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -43,4 +43,12 @@ struct Place {
         }
         return address
     }
+
+}
+
+extension Place: Equatable {
+    static func ==(lhs: Place, rhs: Place) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+
 }

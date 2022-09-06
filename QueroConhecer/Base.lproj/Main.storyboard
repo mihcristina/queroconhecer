@@ -49,7 +49,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="V3S-Pv-h79"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4GQ-mS-r5j">
                             <connections>
-                                <segue destination="ixu-GS-BRd" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="SDg-zp-Kzt"/>
+                                <segue destination="ixu-GS-BRd" kind="presentation" identifier="finderSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="SDg-zp-Kzt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -103,6 +103,11 @@ por 2 segundos</string>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kLj-0F-1kt">
                                         <rect key="frame" x="10" y="196" width="354" height="532"/>
                                     </mapView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUo-iZ-J7b">
+                                        <rect key="frame" x="10" y="81" width="271" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTL-Yh-c7T">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="738"/>
                                         <subviews>
@@ -117,11 +122,6 @@ por 2 segundos</string>
                                             <constraint firstItem="Sxm-qk-v6M" firstAttribute="centerY" secondItem="CTL-Yh-c7T" secondAttribute="centerY" id="kOc-8z-OUn"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUo-iZ-J7b">
-                                        <rect key="frame" x="10" y="81" width="271" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -186,10 +186,6 @@ por 2 segundos</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCi-uC-Ljg">
-                                <rect key="frame" x="20" y="140" width="374" height="722"/>
-                                <color key="backgroundColor" name="Main"/>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="vEa-mE-t0N">
                                 <rect key="frame" x="10" y="150" width="394" height="736"/>
                                 <subviews>
@@ -199,8 +195,11 @@ por 2 segundos</string>
                                             <constraint firstAttribute="height" constant="44" id="74X-JH-6Nh"/>
                                         </constraints>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="VBs-Gv-7IQ" id="N7w-OS-IAs"/>
+                                        </connections>
                                     </searchBar>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pQs-Ga-RdI">
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="pQs-Ga-RdI">
                                         <rect key="frame" x="0.0" y="50" width="394" height="520"/>
                                     </mapView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t11-5b-2lz">
@@ -221,7 +220,7 @@ por 2 segundos</string>
                                                     <action selector="showRoute:" destination="VBs-Gv-7IQ" eventType="touchUpInside" id="KxG-bZ-R5U"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endereçø" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Ip-MU-GWD">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endereço" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Ip-MU-GWD">
                                                 <rect key="frame" x="12" y="38.5" width="370" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                 <nil key="textColor"/>
@@ -244,16 +243,18 @@ por 2 segundos</string>
                                     </view>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="SuH-e2-TJV">
+                                <rect key="frame" x="188.5" y="441.5" width="37" height="37"/>
+                                <color key="color" name="Main"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="t1Y-yK-m6Z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vEa-mE-t0N" firstAttribute="trailing" secondItem="t1Y-yK-m6Z" secondAttribute="trailing" constant="-10" id="9cd-mf-UQL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TCi-uC-Ljg" secondAttribute="trailing" id="CDb-nq-86Y"/>
-                            <constraint firstItem="TCi-uC-Ljg" firstAttribute="top" secondItem="cxc-dQ-n2k" secondAttribute="topMargin" id="Z5M-wl-4gU"/>
+                            <constraint firstItem="SuH-e2-TJV" firstAttribute="centerX" secondItem="pQs-Ga-RdI" secondAttribute="centerX" id="E6i-2R-IH0"/>
+                            <constraint firstItem="SuH-e2-TJV" firstAttribute="centerY" secondItem="pQs-Ga-RdI" secondAttribute="centerY" id="TuT-Dy-wJK"/>
                             <constraint firstItem="vEa-mE-t0N" firstAttribute="leading" secondItem="t1Y-yK-m6Z" secondAttribute="leading" constant="10" id="beW-Fa-f1F"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="TCi-uC-Ljg" secondAttribute="bottom" id="cuB-M6-hp5"/>
-                            <constraint firstItem="TCi-uC-Ljg" firstAttribute="leading" secondItem="cxc-dQ-n2k" secondAttribute="leadingMargin" id="fuF-io-nUf"/>
                             <constraint firstItem="vEa-mE-t0N" firstAttribute="top" secondItem="t1Y-yK-m6Z" secondAttribute="top" constant="10" id="lcq-ae-jQS"/>
                             <constraint firstAttribute="bottom" secondItem="vEa-mE-t0N" secondAttribute="bottom" constant="10" id="ogU-Ot-srD"/>
                         </constraints>
@@ -268,8 +269,9 @@ por 2 segundos</string>
                     <connections>
                         <outlet property="lbAddress" destination="5Ip-MU-GWD" id="gOL-VL-eaz"/>
                         <outlet property="lbName" destination="FRk-2B-JL0" id="Ruo-qe-dKK"/>
+                        <outlet property="loading" destination="SuH-e2-TJV" id="QRt-eo-7Pc"/>
                         <outlet property="mapView" destination="pQs-Ga-RdI" id="bOD-He-3hI"/>
-                        <outlet property="searchBar" destination="LfE-hu-OSG" id="8i0-y6-meY"/>
+                        <outlet property="searchBar" destination="LfE-hu-OSG" id="AdM-vy-Dsh"/>
                         <outlet property="viInfo" destination="t11-5b-2lz" id="b7q-yi-AOW"/>
                     </connections>
                 </viewController>

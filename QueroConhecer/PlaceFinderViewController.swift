@@ -8,6 +8,10 @@
 import UIKit
 import MapKit
 
+protocol PlaceFinderDelegate: AnyObject {
+    func addPlace(_ place: Place)
+}
+
 class PlaceFinderViewController: UIViewController {
 
     enum PlaceFinderMessageType {
@@ -22,6 +26,7 @@ class PlaceFinderViewController: UIViewController {
     @IBOutlet weak var viLoading: UIView!
     
     var place: Place!
+    weak var delegate: PlaceFinderDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +77,7 @@ class PlaceFinderViewController: UIViewController {
         }
         let name = placemark.name ?? placemark.country ?? "Desconhecido"
         let address = Place.getFormattedAddress(with: placemark)
-        place = Place(name: name, latitude: coordinate.latitude, longitude: coordinate.longitude, addreess: address)
+        place = Place(name: name, latitude: coordinate.latitude, longitude: coordinate.longitude, address: address)
         
         let region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
         mapView.setRegion(region, animated: true)
@@ -101,7 +106,8 @@ class PlaceFinderViewController: UIViewController {
         alert.addAction(cancelAction)
         if hasConfirmation {
             let confirmAction = UIAlertAction(title: "OK", style: .default) { action in
-                print("OK")
+                self.delegate?.addPlace(self.place)
+                self.dismiss(animated: true, completion: nil)
             }
             alert.addAction(confirmAction)
         }
