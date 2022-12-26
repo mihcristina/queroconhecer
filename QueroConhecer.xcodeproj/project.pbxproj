@@ -20,6 +20,7 @@
 		686F6E632868E30D00972970 /* QueroConhecerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686F6E622868E30D00972970 /* QueroConhecerUITestsLaunchTests.swift */; };
 		6884BCBD28A03EA800BA900E /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6884BCBC28A03EA700BA900E /* PlacesTableViewController.swift */; };
 		6884BCC328A0A11D00BA900E /* PlaceFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6884BCC228A0A11C00BA900E /* PlaceFinderViewController.swift */; };
+		688A8B2528C06FBF00ABCDD2 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A8B2428C06FBF00ABCDD2 /* PlaceAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		686F6E622868E30D00972970 /* QueroConhecerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueroConhecerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6884BCBC28A03EA700BA900E /* PlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
 		6884BCC228A0A11C00BA900E /* PlaceFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderViewController.swift; sourceTree = "<group>"; };
+		688A8B2428C06FBF00ABCDD2 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				686F6E4A2868E30D00972970 /* LaunchScreen.storyboard */,
 				686F6E4D2868E30D00972970 /* Info.plist */,
 				6884BCBC28A03EA700BA900E /* PlacesTableViewController.swift */,
+				688A8B2428C06FBF00ABCDD2 /* PlaceAnnotation.swift */,
 				6884BCC228A0A11C00BA900E /* PlaceFinderViewController.swift */,
 				682C232328A69B450027B3AC /* MapViewController.swift */,
 				682C232528A6A8370027B3AC /* Place.swift */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				688A8B2528C06FBF00ABCDD2 /* PlaceAnnotation.swift in Sources */,
 				686F6E442868E30B00972970 /* ViewController.swift in Sources */,
 				682C232428A69B450027B3AC /* MapViewController.swift in Sources */,
 				6884BCBD28A03EA800BA900E /* PlacesTableViewController.swift in Sources */,

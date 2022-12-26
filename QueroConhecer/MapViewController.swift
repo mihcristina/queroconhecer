@@ -10,6 +10,11 @@ import MapKit
 
 class MapViewController: UIViewController {
 
+    enum MapMessageType {
+        case routeError
+        case authorizarionWarning
+    }
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var viInfo: UIView!
@@ -19,6 +24,9 @@ class MapViewController: UIViewController {
     
     var places: [Place]!
     var poi: [MKAnnotation] = []
+    lazy var locationManager = CLLocationManager()
+    var btUserLocation: MKUserTrackingButton!
+    var selectedAnnotation: PlaceAnnotation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +34,7 @@ class MapViewController: UIViewController {
         viInfo.isHidden = true
         mapView.mapType = .mutedStandard
         mapView.delegate = self
+        locationManager.delegate = self
         if places.count == 1 {
             title = places[0].name
         } else {
@@ -34,6 +43,39 @@ class MapViewController: UIViewController {
 
         for place in places {
             addToMap(place)
+        }
+
+        configureLocationButton()
+        showPlaces()
+        requestUserLocationAuthorization()
+    }
+
+    func configureLocationButton() {
+        btUserLocation = MKUserTrackingButton(mapView: mapView)
+        btUserLocation.backgroundColor = .white
+        btUserLocation.frame.origin.x = 10
+        btUserLocation.frame.origin.y = 10
+        btUserLocation.layer.cornerRadius = 5
+        btUserLocation.layer.borderWidth = 1
+        btUserLocation.layer.borderColor = UIColor(named: "Main")?.cgColor
+        btUserLocation.clipsToBounds = true
+    }
+
+    func requestUserLocationAuthorization() {
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+                case .authorizedAlways, .authorizedWhenInUse:
+                mapView.addSubview(btUserLocation)
+
+                case .denied:
+                    showMessage(type: .authorizarionWarning)
+
+                case .notDetermined:
+                    locationManager.requestWhenInUseAuthorization()
+
+                case .restricted:
+                    break
+            }
         }
     }
     
@@ -48,14 +90,42 @@ class MapViewController: UIViewController {
     func showPlaces() {
         mapView.showAnnotations(mapView.annotations, animated: true)
     }
+
+    func showInfo() {
+        lbName.text = selectedAnnotation?.title
+        lbAddress.text = selectedAnnotation?.address
+        viInfo.isHidden = false
+    }
     
     @IBAction func showRoute(_ sender: Any) {
+    
     }
     
     @IBAction func showSearchBar(_ sender: UIBarButtonItem) {
         searchBar.resignFirstResponder()
         searchBar.isHidden = !searchBar.isHidden
         
+    }
+    
+    func showMessage(type: MapMessageType) {
+        let title = type == .authorizarionWarning ? "Aviso" : "Erro"
+        let message = type == .authorizarionWarning ? "Para usar os recursos de localização do App que você precisa permitir o uso na tela de Ajustes" : "Não foi possível encontrar esta rota"
+
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        if type == .authorizarionWarning {
+            let confirmAction = UIAlertAction(title: "Ir para ajustes", style: .default) { (action) in
+                if #available(iOS 15.4, *) {
+                    if let appSettings = URL(string: UIApplicationOpenNotificationSettingsURLString) {
+                        UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
+            }
+            alert.addAction(confirmAction)
+        }
     }
     
 }
@@ -113,5 +183,35 @@ extension MapViewController: UISearchBarDelegate {
             }
             self.loading.stopAnimating()
         }
+    }
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            mapView.addSubview(btUserLocation)
+            locationManager.startUpdatingLocation()
+        default:
+            break
+
+        }
+    }
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+
+        let camera = MKMapCamera()
+        camera.centerCoordinate = view.annotation!.coordinate
+        camera.pitch = 80
+        camera.altitude = 100
+        mapView.setCamera(camera, animated: true)
+        selectedAnnotation = (view.annotation as! PlaceAnnotation)
+        showInfo()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
     }
 }
